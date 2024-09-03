@@ -15,9 +15,15 @@ Provided an endpoint URL, a list of assets and a list of markets, infinetely que
 
 
 # Stack:
+
 Python
+
 FastAPI
-Asyncio, Threading
+
+Asyncio
+
+Threading
+
 Pydantic
 
 
