@@ -21,7 +21,7 @@ Asyncio, Threading
 Pydantic
 
 
-To install:
+# To install:
 
 1. clone repo: 
 2. If you are on MacOS or Linux: execute 'make install'. Otherwise, create virtual environment and install dependencies from `requirements.txt`
