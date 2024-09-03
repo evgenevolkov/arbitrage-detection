@@ -1,0 +1,10 @@
+# virtual envirnment
+.venv/
+
+# security sensitive environment variables
+.env
+!.env.example
+
+# cache 
+__pycache__/
+.pytest_cache/

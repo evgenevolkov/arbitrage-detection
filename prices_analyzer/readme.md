@@ -1,0 +1,1 @@
+to run you would neet to get a free API key from www.alphavantage.com
