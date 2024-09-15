@@ -2,7 +2,7 @@
 
 menu:
 	@echo "Select an option:"; \
-	select opt in "Start analyzer" "Start generator" "Exit"; do \
+	select opt in "Start generator" "Start analyzer" "Exit"; do \
 	    case $$opt in \
 	        ("Start generator") make start_generator; break;; \
 	        ("Start analyzer") make start_analyzer; break;; \
