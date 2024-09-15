@@ -45,7 +45,7 @@ class PriceFetcher:
                 response = await client.get(api_url)
                 response.raise_for_status()
                 asset_data = response.json()
-                print(f"Received asset data: {asset_data}")
+                logger.debug(f"Received asset data: {asset_data}")
                 asset_data = schemas.AssetPriceFromApi(**asset_data)
 
         except httpx.HTTPStatusError as e:
