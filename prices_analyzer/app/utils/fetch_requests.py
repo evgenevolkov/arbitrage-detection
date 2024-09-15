@@ -1,4 +1,5 @@
 import asyncio
+from decouple import config
 import httpx
 
 from ..utils import schemas
@@ -11,13 +12,25 @@ logger = get_logger(__name__)
 class PriceFetcher:
     """Class responsible for fetching price of an asset on a market from predefined API"""
 
-    api_url_template: str = None
-
-    def __init__(self): 
+    def __init__(
+            self,
+            host: str = None,
+            port: str = None,
+            protocol: str = None,
+            prices_request_interval_s: float = None
+            ):
+        self.prices_source_protocol = protocol or config('PRICES_SOURCE_PROTOCOL', default="http")
+        self.prices_source_host = host or config('PRICES_SOURCE_HOST')
+        self.prices_source_port = port or config('PRICES_SOURCE_PORT')
         self._get_api_url_template()
 
+
     def _get_api_url_template(self):
-        self.api_url_template: str = "http://127.0.0.1:8000/price?asset_name={asset}&market={market}"
+        self.api_url_template: str = (
+            f"{self.prices_source_protocol}://{self.prices_source_host}:"
+            + f"{self.prices_source_port}"
+            + f"/price?asset_name={{asset}}&market={{market}}"
+            )
 
 
     def get_api(self, asset, market):
