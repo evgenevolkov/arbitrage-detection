@@ -1,5 +1,5 @@
 import asyncio
-# import httpx
+from decouple import config
 
 from .utils.fetch_requests import PriceFetcher 
 from .utils.logger import get_logger
@@ -8,6 +8,7 @@ from .core.detector import ArbitrageDetector
 
 logger = get_logger(__name__)
 semaphore = asyncio.Semaphore(200)
+prices_request_interval_s = float(config('PRICES_REQUEST_INTERVAL_S'))
 
 
 async def fetch_and_process_price(
@@ -21,6 +22,7 @@ async def fetch_and_process_price(
             await detector.check_for_arbitrage(asset_data)
             async with semaphore:
                 asyncio.create_task(detector.price_update(asset_data))
+                await asyncio.sleep(delay=prices_request_interval_s) # not to ping same asset too often
 
 
 async def main():
