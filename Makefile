@@ -4,7 +4,8 @@
 menu:
 	@echo "Select an option:"; \
 	select opt in "Start generator" "Start analyzer" "Build generator container" \
-				   "Start generator container" "Clean" "Exit"; do \
+				   "Start generator container" "Stop generator container" "Clean" \
+				   "Exit"; do \
 	    case $$opt in \
 	        ("Start generator") make start_generator; break;; \
 	        ("Start analyzer") make start_analyzer; break;; \
